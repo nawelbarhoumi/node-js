@@ -1,38 +1,47 @@
 const express = require('express');
-const app = express();
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const port = 3000;
+
+const app = express();
+// cors config
+app.unsubscribe(cors())
+
+// morgan
+app.use(morgan('dev'));
+
+// body-parser config
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
 
 app.get('/', async(req, res) => {
   res.json({message:'bonjour les amis!'});
 });
 
-// 1. get all todos
-app.get('/todos', async(req, res) => {
-    res.json({message:'get all todos'});
-  });
 
-//2. get todo by id
-  app.get('/todos', async(req, res) => {
-    res.json({message:'get todo by id'});
-  });
-  
-  //3.add todo
+//import connection to database
+const connect = require('./database/connect');
 
-  app.post('/todos', async(req, res) => {
-    res.json({message:'add todo'});
-  });
+//import routing
+const todoAPI = require('./routes/todoAPI');
+const userAPI = require('./routes/userAPI');
+const userDetailsAPI = require('./routes/userDetailsAPI');
+const tutorialAPI = require('./routes/tutorialAPI');
+const tagAPI = require('./routes/tagAPI');
 
-  //4. update todo by id
+//use routing
+app.use('/api/v1', todoAPI);
+app.use('/api/v1', userAPI);
+app.use('/api/v1', userDetailsAPI);
+app.use('/api/v1', tutorialAPI);
+app.use('./api/v1', tagAPI);
 
-  app.put('/todos', async(req, res) => {
-    res.json({message:'update todo by id'});
-  });
 
-  //5. delete todo by id
 
-  app.delete('/todos', async(req, res) => {
-    res.json({message:'delete todo by id'});
-  });
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
