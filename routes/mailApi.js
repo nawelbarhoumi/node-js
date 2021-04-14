@@ -53,8 +53,8 @@ router.get('/sendMail/v2', async(req, res)=>{
 let transporter = nodemailer.createTransport({
     service: 'gmail', 
   auth: {
-    user: 'nawel.barhoumi@gmail.com', 
-    pass: 'nawelbarhoumi22', 
+    user: process.env.EMAIL, 
+    pass: process.env.PASSWORD, 
   },
 });
 const templatePath = path.resolve('./mail_templates','register.html');
