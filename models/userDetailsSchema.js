@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const UserDetailsSchema = mongoose.Schema({
     adress: String,
     zipCode: String,
-    city: String
+    city: String,
+    
 },
 {
     versionKey: false,

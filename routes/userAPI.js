@@ -76,5 +76,43 @@ router.get('/filter/users/age/name', async(req, res) => {
   });
 
 
+    //affect one to many
+    router.put('/todos/affectTodos/:idTodo/:idUser', async(req, res)=>{
+      const updateUser = await User.findByIdAndUpdate(req.params.idUser,{$push: {todos: req.params.idTodo}},{new: true});
+      res.json({message:'Todo affected successfully.'})
+  });
+  
+  // desaffect one to many
+  router.put('/todos/desaffectTodos/:idTodo/:idUser', async(req, res)=>{
+    const updateUser = await User.findByIdAndUpdate(req.params.idUser,{$pull: {todos: req.params.idTodo}},{new: true});
+    res.json({message:'Todo desaffected successfully.'})
+  });
+  
+
+     //affect one to one
+     router.put('/userDetails/affectUserDetails/:idUserDetails/:idUser', async(req, res)=>{
+      const updateUserDetails = await User.findByIdAndUpdate(req.params.idUser,{userDetails: req.params.idUserDetails},{new: true});
+      res.json({message:'UserDetail affected successfully.'})
+  });
+  
+  // desaffect one to one
+  router.put('/userDetails/desaffectUserDetails/:idUser/:idUserDetails', async(req, res)=>{
+    const updateUserDetails = await User.findByIdAndUpdate(req.params.idUser,{userDetails: req.params.idUserDetails},{new: true});
+    res.json({message:'userDetail desaffected successfully.'})
+  });
+
+
+    //affect one to many
+    router.put('/tutorials/affectTutorials/:idTutorial/:idUser', async(req, res)=>{
+      const updateTutorial = await User.findByIdAndUpdate(req.params.idUser,{$push: {tutorials: req.params.idTutorial}},{new: true});
+      res.json({message:'tutorial affected successfully.'})
+  });
+  
+  // desaffect one to many
+  router.put('/tutorials/desaffectTutorials/:idUser/:idTutorial', async(req, res)=>{
+    const updateTutorial = await User.findByIdAndUpdate(req.params.idUser,{$pull: {tutorials: req.params.idTutorial}},{new: true});
+    res.json({message:'tutorial desaffected successfully.'})
+  });
+  
 
 module.exports = router;

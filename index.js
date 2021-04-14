@@ -30,13 +30,15 @@ const userAPI = require('./routes/userAPI');
 const userDetailsAPI = require('./routes/userDetailsAPI');
 const tutorialAPI = require('./routes/tutorialAPI');
 const tagAPI = require('./routes/tagAPI');
+const mailAPI = require('./routes/mailAPI');
 
 //use routing
 app.use('/api/v1', todoAPI);
 app.use('/api/v1', userAPI);
 app.use('/api/v1', userDetailsAPI);
 app.use('/api/v1', tutorialAPI);
-app.use('./api/v1', tagAPI);
+app.use('/api/v1', tagAPI);
+app.use('/api/v1', mailAPI);
 
 
 
