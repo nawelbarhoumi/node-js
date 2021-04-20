@@ -10,6 +10,11 @@ dotenv.config();
 //require('dotenv').config()
 
 
+
+//pasport
+const passport = require('./passport/passport');
+
+
 const app = express();
 // cors config
 app.unsubscribe(cors())
@@ -38,6 +43,7 @@ const tutorialAPI = require('./routes/tutorialAPI');
 const tagAPI = require('./routes/tagAPI');
 const mailAPI = require('./routes/mailAPI');
 const uploadAPI = require('./routes/uploadAPI');
+const authAPI = require('./routes/authAPI');
 //require schedule
 const schedule = require('./schedule');
 
@@ -49,6 +55,7 @@ app.use('/api/v1', tutorialAPI);
 app.use('/api/v1', tagAPI);
 app.use('/api/v1', mailAPI);
 app.use('/api/v1', uploadAPI);
+app.use('/api/v1', authAPI);
 
 
 

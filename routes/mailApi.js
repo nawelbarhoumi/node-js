@@ -5,9 +5,10 @@ const nodemailer = require("nodemailer");
 const path = require('path');
 const fs = require('fs');
 const ejs = require('ejs');
+const passport = require('passport')
 
 
-router.get('/sendMail/v1', async(req, res)=>{
+router.get('/sendMail/v1', passport.authenticate('bearer', { session: false }), async(req, res)=>{
 
       // Generate test SMTP service account from ethereal.email
   // Only needed if you don't have a real mail account for testing

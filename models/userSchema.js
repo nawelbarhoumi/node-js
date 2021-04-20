@@ -5,6 +5,7 @@ const userSchema = mongoose.Schema({
     email: String,
     password: String,
     age: Number,
+    photo: String,
     todos: [{type: mongoose.Schema.Types.ObjectId, ref:'todo'}],
     userDetails: {type: mongoose.Schema.Types.ObjectId, ref:'user'},
     tutorials: [{type: mongoose.Schema.Types.ObjectId, ref: 'tutorial'}]
